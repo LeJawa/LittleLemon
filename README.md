@@ -1,2 +1,2 @@
-# LittleLemon
+# Little Lemon webapp
 Capstone project for the Back-End Developer Professional Certificate by Meta on Coursera
