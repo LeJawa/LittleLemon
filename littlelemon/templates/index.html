@@ -1,11 +1,27 @@
 <html>
   <head>
+    {% load static %}
     <title>Capstone Project</title>
+    <link rel="stylesheet" href="{% static 'restaurant/style.css' %}">
   </head>
   <body>
     <h1 style="text-align:center;">Welcome to the Little Lemon restaurant</h1>
-    {% load static %}
     <img src="{% static 'restaurant/logo.png' %}">
+
+    <form action="/auth/token/login" method="post">
+      {% csrf_token %}
+      <p class="endpoint">Login</p>
+      <input type="text" name="username">
+      <input type="password" name="password">
+      <button type="submit" class="endpoint">GO</button>
+    </form>
+
+    
+    <form action="{% url 'show_menuitem-list' %}" method="get">
+      <p class="endpoint">Access the 'show/menu-items' endpoint</p>
+      <button type="submit" class="endpoint">GO</button>
+    </form>
+
 
   </body>
 </html>
