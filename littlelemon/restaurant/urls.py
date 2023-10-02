@@ -6,12 +6,12 @@ from . import views
 router = DefaultRouter()
 
 router.register(r'booking/tables', views.BookingViewSet)
+router.register(r'show/menu-items', views.ShowMenuItemViewSet, basename="show_menuitem")
+router.register(r'manage/menu-items', views.ManageMenuItemView, basename="manage_menuitem")
 
 
 urlpatterns = [
-    path('', views.index, name="index"),
-    re_path(r'^menu-items/?$', views.MenuItemView.as_view(), name="menu-items"),
-    path('menu-items/<int:pk>', views.SinlgeMenuItemView.as_view()),
+    
 ]
 
 urlpatterns += router.urls

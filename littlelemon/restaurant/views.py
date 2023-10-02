@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from rest_framework import generics
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics, viewsets, mixins
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from .models import MenuItem, Booking
 from .serializers import MenuItemSerializer, BookingSerializer
@@ -9,15 +8,14 @@ from .serializers import MenuItemSerializer, BookingSerializer
 def index(request):
     return render(request, 'index.html', {})
 
-class MenuItemView(generics.ListCreateAPIView):
+class ManageMenuItemView(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAdminUser,]
 
-class SinlgeMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+class ShowMenuItemViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
-    permission_classes = [IsAuthenticated,]
 
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
