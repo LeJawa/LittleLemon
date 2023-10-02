@@ -11,7 +11,7 @@ class MenuItem(models.Model):
     inventory = models.SmallIntegerField(null=False)
     
     def get_item(self):
-        return f'{self.title} : ${str(self.price)}'
+        return f'{self.title}: ${str(self.price)}'
 
     def __str__(self) -> str:
         return self.get_item()
