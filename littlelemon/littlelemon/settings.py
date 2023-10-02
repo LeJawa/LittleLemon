@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'restaurant',
     'rest_framework',
     'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -150,7 +151,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
     # 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAdminUser'],
     # 'DEFAULT_THROTTLE_RATES': {
@@ -159,6 +160,6 @@ REST_FRAMEWORK = {
     # }
 }
 
-# DJOSER = {
-#     "USER_ID_FIELD": "username"
-# }
+DJOSER = {
+    "USER_ID_FIELD": "username"
+}
