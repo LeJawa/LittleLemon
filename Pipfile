@@ -9,7 +9,7 @@ djangorestframework = "*"
 djangorestframework-xml = "*"
 djoser = "*"
 django-filter = "*"
-python-dotenv = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
