@@ -8,19 +8,144 @@
     <h1 style="text-align:center;">Welcome to the Little Lemon restaurant</h1>
     <img src="{% static 'restaurant/logo.png' %}">
 
-    <form action="/auth/token/login" method="post">
-      {% csrf_token %}
-      <p class="endpoint">Login</p>
-      <input type="text" name="username">
-      <input type="password" name="password">
-      <button type="submit" class="endpoint">GO</button>
-    </form>
+    <section class="big-container">
+      <section class="column-section">
+        <article>
+          <form id="login-form" action="/auth/token/login" method="post">
+            {% csrf_token %}
+            <div class="form-header">
+              <p class="description">Login as a staff user</p>
+            </div>
+            <div class="form-body">
+              <div class="input">
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="25" required="">
 
-    
-    <form action="{% url 'show_menuitem-list' %}" method="get">
-      <p class="endpoint">Access the 'show/menu-items' endpoint</p>
-      <button type="submit" class="endpoint">GO</button>
-    </form>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" maxlength="50" required="">
+              </div>
+              <div class="button">
+                <button type="submit" class="endpoint">Login</button>
+              </div>
+            </div>
+          </form>
+        </article>
+        <article>
+          <form id="show-menuitem" action="{% url 'show_menuitem-list' %}" method="get">
+            {% csrf_token %}
+            <div class="form-header">
+              <p class="description">Access the 'show/menu-items' endpoint</p>
+            </div>
+            <div class="form-body">
+              <div class="button">
+                <button type="submit" class="endpoint">GO</button>
+              </div>
+            </div>
+          </form>
+        </article>
+      </section>
+
+      <section class="column-section">
+        <article id="output">
+          <button id="clear-output" hidden>Clear output</button>
+          <div id="placeholder-output">
+            OUTPUT WILL APPEAR HERE
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <script>
+      {% comment %} Add numbering to the articles {% endcomment %}
+      const form_headers = document.querySelectorAll('.form-header');
+
+      form_headers.forEach((header, index) => {
+        const numbering = document.createElement('p');
+        numbering.classList.add('numbering');
+        numbering.innerHTML = `${index + 1}.`;
+
+        header.insertBefore(numbering, header.firstChild);
+      })
+
+      function add_response_to_output(response) {
+        console.log(response.status);
+        const responsediv = document.createElement('div')
+        responsediv.classList.add('response');
+        const status = document.createElement('span');
+        status.classList.add('status');
+
+        if (response.status.toString().startsWith('4')){
+          status.classList.add('status-red');
+        } else if (response.status.toString().startsWith('5')){
+          status.classList.add('status-blue');
+        } else if (response.status.toString().startsWith('2')){
+          status.classList.add('status-green');
+        }
+        const output = document.createElement('span');
+        output.classList.add('data');
+        status.innerHTML = response.status + " " + response.statusText;
+        output.innerHTML = JSON.stringify(response.data);
+        document.getElementById("output").appendChild(responsediv);
+        responsediv.appendChild(status);
+        responsediv.appendChild(output);
+        document.getElementById('clear-output').removeAttribute('hidden');
+        document.getElementById('placeholder-output').setAttribute('hidden', '');
+      }
+
+      function rightFetch(path, method, formData){
+        if (method == "GET") {
+          return fetch(path, {method: method})
+        }
+        else if (method == "POST"){
+          return fetch(path, {
+            method: method,
+            body: formData
+          })
+        }
+      }
+
+      function linkFormToOutput(formId, path, method) {
+        const loginForm = document.getElementById(formId);
+
+        loginForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(loginForm);
+
+          rightFetch(path, method, formData)
+          .then(response => {
+            const status = response.status;
+            const statusText = response.statusText;
+            return response.json().then(data => ({ status, statusText, data })); // I don't really understand this but it works
+          })
+          .then(response => {
+            add_response_to_output(response);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        })
+      }
+
+      linkFormToOutput('login-form', "/auth/token/login", 'POST')
+      linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET')
+      
+
+      const clearOutputButton = document.getElementById('clear-output');
+
+      clearOutputButton.addEventListener('click', () => {
+        const outputArticle = document.getElementById('output');
+        const responseElements = outputArticle.querySelectorAll('.response');  
+
+        responseElements.forEach((response) => {
+          response.remove();
+        })
+
+        clearOutputButton.setAttribute('hidden', '');
+        document.getElementById('placeholder-output').removeAttribute('hidden');
+      })
+
+    </script>
+
+
 
 
   </body>
