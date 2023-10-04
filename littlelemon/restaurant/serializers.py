@@ -7,7 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email']
-        read_only_fields = ['email']
 
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,5 +17,11 @@ class BookingSerializer(serializers.ModelSerializer):
     user = UserSerializer
     class Meta:
         model = Booking
-        fields = ['user', 'name', 'no_of_guests', 'booking_date']
+        fields = ['id', 'user', 'name', 'no_of_guests', 'booking_date']
+        read_only_fields = ['user']
+        
+    def create(self, validated_data):
+        user = self.context['request'].user
+        booking = Booking.objects.create(user=user, **validated_data)
+        return booking
     
