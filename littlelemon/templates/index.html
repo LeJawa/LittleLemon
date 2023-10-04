@@ -10,37 +10,8 @@
 
     <section class="big-container">
       <section class="column-section">
-        <article>
-          <form id="login-form" action="/auth/token/login" method="post">
-            {% csrf_token %}
-            <div class="form-header">
-              <p class="description">Login as a staff user</p>
-            </div>
-            <div class="form-body">
-              <div class="input">
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="25" required="">
-
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" maxlength="50" required="">
-              </div>
-              <div class="button">
-                <button type="submit" class="endpoint">Login</button>
-              </div>
-            </div>
-          </form>
-        </article>
-        <article>
-          <form id="show-menuitem" action="{% url 'show_menuitem-list' %}" method="get">
-            {% csrf_token %}
-            <div class="form-header">
-              <p class="description">Access the 'show/menu-items' endpoint</p>
-            </div>
-            <div class="form-body">
-              <div class="button">
-                <button type="submit" class="endpoint">GO</button>
-              </div>
-            </div>
-          </form>
-        </article>
+        {% include 'forms/login-form.html' %}
+        {% include 'forms/show-menuitem-form.html' %}
       </section>
 
       <section class="column-section">
