@@ -1,4 +1,4 @@
-const clearOutputButton = document.getElementById('clear-output');
+const clearOutputButton = document.getElementById('clear-output-button');
 
 clearOutputButton.addEventListener('click', () => {
     const outputArticle = document.getElementById('output-box');

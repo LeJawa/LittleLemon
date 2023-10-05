@@ -22,7 +22,7 @@ function add_response_to_output(response) {
     document.getElementById("output-box").children[1].after(responsediv);
     responsediv.appendChild(status);
     responsediv.appendChild(output);
-    document.getElementById('clear-output').removeAttribute('hidden');
+    document.getElementById('clear-output-button').removeAttribute('hidden');
     document.getElementById('placeholder-output').setAttribute('hidden', '');
 }
 
