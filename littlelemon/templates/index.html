@@ -25,6 +25,8 @@
     </section>
 
     <script>
+      var user_authtoken = null;
+
       {% comment %} Add numbering to the articles {% endcomment %}
       const form_headers = document.querySelectorAll('.form-header');
 
@@ -53,8 +55,9 @@
         const output = document.createElement('span');
         output.classList.add('data');
         status.innerHTML = response.status + " " + response.statusText;
-        output.innerHTML = JSON.stringify(response.data);
-        document.getElementById("output").appendChild(responsediv);
+        output.innerHTML = JSON.stringify(response.data, null, 1);
+
+        document.getElementById("output").children[1].after(responsediv);
         responsediv.appendChild(status);
         responsediv.appendChild(output);
         document.getElementById('clear-output').removeAttribute('hidden');
@@ -73,22 +76,41 @@
         }
       }
 
-      function linkFormToOutput(formId, path, method) {
-        const loginForm = document.getElementById(formId);
+      function isSuccesful(response) {
+        return response.status.toString().startsWith('2');
+      }
 
-        loginForm.addEventListener('submit', (event) => {
-          event.preventDefault();
+      const FormAction = {
+        LOGIN: 'login',
+        LOGOUT: 'logout',
+        STANDARD: 'standard'
+      }
 
-          const formData = new FormData(loginForm);
+      function linkFormToOutput(formId, path, method, formAction = FormAction.STANDARD) {
+        const form = document.getElementById(formId);
 
-          rightFetch(path, method, formData)
-          .then(response => {
+        form.addEventListener('submit', (event) => {
+          event.preventDefault(); // The default action is to go to the page in path, but we want to stay on the same page
+
+          const formData = new FormData(form);
+
+          rightFetch(path, method, formData) // This function wraps fetch to be able to accept different methods using the same syntax
+          .then(response => { // This step is necessary to inject the status code into the response object
             const status = response.status;
             const statusText = response.statusText;
             return response.json().then(data => ({ status, statusText, data })); // I don't really understand this but it works
           })
           .then(response => {
             add_response_to_output(response);
+            
+            if (isSuccesful(response)) {
+              if (formAction == FormAction.LOGIN) { // Saves the user_authtoken if a login form was used
+                user_authtoken = response.data.auth_token;
+              }
+              else if (formAction == FormAction.LOGOUT) { // Deletes the user_authtoken if a logout form was used
+                user_authtoken = null;
+              }
+            }
           })
           .catch(error => {
             console.error(error);
@@ -96,7 +118,7 @@
         })
       }
 
-      linkFormToOutput('login-form', "/auth/token/login", 'POST')
+      linkFormToOutput('login-form', "/auth/token/login", 'POST', FormAction.LOGIN)
       linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET')
       
 
