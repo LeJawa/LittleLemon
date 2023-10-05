@@ -4,13 +4,16 @@
     <title>Capstone Project</title>
     <link rel="stylesheet" href="{% static 'restaurant/style.css' %}">
   </head>
+  <script src="{% static 'jquery-3.7.1.min.js' %}">
+  </script>
   <body>
     <h1 style="text-align:center;">Welcome to the Little Lemon restaurant</h1>
     <img src="{% static 'restaurant/logo.png' %}">
 
     <section class="big-container">
       <section id="steps" class="column-section">
-        {% include 'forms/login-form.html' %}
+        <h2>Menu</h2>
+        {% include 'forms/login-staff-form.html' %}
         {% include 'forms/show-menuitem-form.html' %}
         <h2>Manage menu items</h2>
         {% include 'forms/logout-form.html' %}
@@ -35,6 +38,8 @@
       linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET', FormAction.STANDARD);
       linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
       linkFormToOutput('manage-menuitem-list', "{% url 'manage_menuitem-list' %}" ,'GET', FormAction.STANDARD);
+      linkFormToOutput('manage-menuitem-create', "{% url 'manage_menuitem-list' %}" ,'POST', FormAction.STANDARD);
+
     </script>
   </body>
 </html>
