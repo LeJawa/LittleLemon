@@ -35,7 +35,7 @@ function rightFetch(path, method, formData){
     if (method == "GET") {
         return fetch(path, {method: method, headers: headers})
     }
-    else if (method == "POST"){
+    else if (method == "POST" || method == "DELETE"){
         return fetch(path, {
         method: method,
         headers: headers,
@@ -51,7 +51,8 @@ function isSuccesful(response) {
 const FormAction = {
     LOGIN: 'login',
     LOGOUT: 'logout',
-    STANDARD: 'standard'
+    STANDARD: 'standard',
+    DETAIL: 'detail'
 }
 
 function linkFormToOutput(formId, path, method, formAction = FormAction.STANDARD) {
@@ -61,6 +62,11 @@ function linkFormToOutput(formId, path, method, formAction = FormAction.STANDARD
         event.preventDefault(); // The default action is to go to the page in path, but we want to stay on the same page
 
         const formData = new FormData(form);
+
+        if (formAction == FormAction.DETAIL) {
+            const id = formData.get('id');
+            path = path.replace('0', id);
+        }
 
         rightFetch(path, method, formData) // This function wraps fetch to be able to accept different methods using the same syntax
         .then(response => { // This step is necessary to inject the status code into the response object

@@ -37,6 +37,7 @@
       linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
       linkFormToOutput('manage-menuitem-list', "{% url 'manage_menuitem-list' %}" ,'GET', FormAction.STANDARD);
       linkFormToOutput('manage-menuitem-create', "{% url 'manage_menuitem-list' %}" ,'POST', FormAction.STANDARD);
+      linkFormToOutput('manage-menuitem-delete', "{% url 'manage_menuitem-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
 
     </script>
   </body>

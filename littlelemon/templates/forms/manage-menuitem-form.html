@@ -1,17 +1,5 @@
 
-<article>
-  <form id="manage-menuitem-list" action="{% url 'manage_menuitem-list' %}" method="get">
-    {% csrf_token %}
-    <div class="form-header">
-      <p class="description">Access the 'restaurant/manage/menu-items' endpoint</p>
-    </div>
-    <div class="form-body">
-      <div class="button">
-        <button type="submit" class="endpoint">GO</button>
-      </div>
-    </div>
-  </form>
-</article>
+
 
 <article>
   <form id="manage-menuitem-create" action="{% url 'manage_menuitem-list' %}" method="post">
@@ -26,23 +14,56 @@
         <input type="number" class="form-control" id="menuitem-inventory" name="inventory" placeholder="Inventory" required="" step="1" min="0" max="999">
     </div>
       <div class="button">
-        <button type="submit" class="endpoint" id="create-menuitem-button" onclick="updateRandomMenuitem()">Create</button>
+        <button type="button" class="endpoint" id="random-menuitem-button" onclick="updateRandomMenuitem()">Random Item</button>
+        <button type="submit" class="endpoint" id="create-menuitem-button">Create</button>
       </div>
     </div>
   </form>
 </article>
+
+<article>
+  <form id="manage-menuitem-list" action="{% url 'manage_menuitem-list' %}" method="get">
+    {% csrf_token %}
+    <div class="form-header">
+      <p class="description">List all menu items via 'restaurant/manage/menu-items' endpoint</p>
+    </div>
+    <div class="form-body">
+      <div class="button">
+        <button type="submit" class="endpoint">GO</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+<article>
+  <form id="manage-menuitem-delete" action="{% url 'manage_menuitem-detail' 1 %}" method="delete">
+    {% csrf_token %}
+    <div class="form-header">
+      <p class="description">Delete a particular menu item via 'restaurant/manage/menu-items/&lt;pk&gt;' endpoint</p>
+    </div>
+    <div class="form-body">
+      <div class="input">
+        <input type="number" class="form-control" id="delete-menuitem-id" name="id" placeholder="Menu item ID" required="" step="1">
+      </div>
+      <div class="button">
+        <button type="submit" class="endpoint">GO</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+
 <script>
   function updateRandomMenuitem(){
     const listOfMeals = ["Fresh sardines", "Breakfast Potatoes", "Egg Drop Soup", "Pumpkin Pie", "Chicken Quinoa Greek Salad", "Corned Beef and Cabbage", "Moussaka", "Vegetarian Casserole", "BBQ Pork Sloppy Joes", "Chicken Alfredo Primavera", "Smoked Haddock Kedgeree", 	"Beef Lo Mein", "Chicken Karaage", 	"Salmon Prawn Risotto", "Jerk chicken with rice & peas", "Blackberry Fool"]
 
     const randomTitle = listOfMeals[Math.floor(Math.random() * listOfMeals.length)];
-    listOfMeals.splice(listOfMeals.indexOf(randomTitle), 1);
     var randomPrice = Math.floor(Math.random() * 15) + 5.99;
     randomPrice = randomPrice.toFixed(2)
     const randomInventory = Math.floor(Math.random() * 50);
-    document.getElementById("menuitem-title").setAttribute('value', randomTitle);
-    document.getElementById("menuitem-price").setAttribute('value', randomPrice);
-    document.getElementById("menuitem-inventory").setAttribute('value', randomInventory);
+    
+    document.getElementById("menuitem-title").value = randomTitle;
+    document.getElementById("menuitem-price").value = randomPrice;
+    document.getElementById("menuitem-inventory").value = randomInventory;
   }
-  updateRandomMenuitem();
 </script>
