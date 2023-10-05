@@ -9,13 +9,16 @@
     <img src="{% static 'restaurant/logo.png' %}">
 
     <section class="big-container">
-      <section class="column-section">
+      <section id="steps" class="column-section">
         {% include 'forms/login-form.html' %}
         {% include 'forms/show-menuitem-form.html' %}
+        <h2>Manage menu items</h2>
+        {% include 'forms/logout-form.html' %}
+        {% include 'forms/manage-menuitem-form.html' %}
       </section>
 
-      <section class="column-section">
-        <article id="output">
+      <section id="output-column" class="column-section">
+        <article id="output-box">
           <button id="clear-output" hidden>Clear output</button>
           <div id="placeholder-output">
             OUTPUT WILL APPEAR HERE
@@ -30,6 +33,8 @@
       // Don't forget to link all the forms to the output
       linkFormToOutput('login-form', "/auth/token/login", 'POST', FormAction.LOGIN);
       linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET', FormAction.STANDARD);
+      linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
+      linkFormToOutput('manage-menuitem-list', "{% url 'manage_menuitem-list' %}" ,'GET', FormAction.STANDARD);
     </script>
   </body>
 </html>

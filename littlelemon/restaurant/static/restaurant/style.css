@@ -10,7 +10,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Markazi Text', serif;
+    /* font-family: 'Markazi Text', serif; */
     letter-spacing: 2px;;
 }
 
@@ -22,7 +22,7 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
-    color: #333333;
+    color: #232923;
     margin:1rem 0;
 }
 
@@ -50,6 +50,12 @@ p, ul{
     /* border: solid pink; */
 }
 
+#output-column {
+    position: sticky;
+    top: 100px;
+    height: auto;
+}
+
 article {
     flex:1;
     padding: 1em;
@@ -57,7 +63,7 @@ article {
     border-radius: 1em;
 }
 
-#output {
+#output-box {
     background-color: #636259;
     color: #edecdc;
 }
@@ -145,30 +151,30 @@ input.form-control{
     /* margin-top: 2em; */
 }
 
-#output span {
+#output-box span {
     font-size: large;
 }
 
-#output .response {
+#output-box .response {
     margin-top: 1em;
 }
 
-#output .status {
+#output-box .status {
     font-weight: bold;
     font-size: larger;
     border: solid;
     padding: 0.15em;
 }
 
-#output .status-green {
+#output-box .status-green {
     color: rgb(118, 228, 118);
 }
 
-#output .status-red {
+#output-box .status-red {
     color: rgb(252, 82, 82);
 }
 
-#output .status-blue {
+#output-box .status-blue {
     color: rgb(114, 114, 247);
 }
 

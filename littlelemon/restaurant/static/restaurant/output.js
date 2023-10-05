@@ -1,7 +1,7 @@
 const clearOutputButton = document.getElementById('clear-output');
 
 clearOutputButton.addEventListener('click', () => {
-    const outputArticle = document.getElementById('output');
+    const outputArticle = document.getElementById('output-box');
     const responseElements = outputArticle.querySelectorAll('.response');  
 
     responseElements.forEach((response) => {

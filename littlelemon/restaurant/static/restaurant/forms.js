@@ -19,7 +19,7 @@ function add_response_to_output(response) {
     status.innerHTML = response.status + " " + response.statusText;
     output.innerHTML = JSON.stringify(response.data, null, 1);
 
-    document.getElementById("output").children[1].after(responsediv);
+    document.getElementById("output-box").children[1].after(responsediv);
     responsediv.appendChild(status);
     responsediv.appendChild(output);
     document.getElementById('clear-output').removeAttribute('hidden');
@@ -27,12 +27,18 @@ function add_response_to_output(response) {
 }
 
 function rightFetch(path, method, formData){
+    const headers = {};
+    if (user_authtoken) {
+        headers['Authorization'] = `Token ${user_authtoken}`;
+    }
+
     if (method == "GET") {
-        return fetch(path, {method: method})
+        return fetch(path, {method: method, headers: headers})
     }
     else if (method == "POST"){
         return fetch(path, {
         method: method,
+        headers: headers,
         body: formData
         })
     }
@@ -60,17 +66,24 @@ function linkFormToOutput(formId, path, method, formAction = FormAction.STANDARD
         .then(response => { // This step is necessary to inject the status code into the response object
             const status = response.status;
             const statusText = response.statusText;
+
+            if (response.headers.get('Content-Length') == 0)
+            {
+                return { status, statusText, data: null };
+            }
             return response.json().then(data => ({ status, statusText, data })); // I don't really understand this but it works
+
+
         })
         .then(response => {
             add_response_to_output(response);
             
             if (isSuccesful(response)) {
                 if (formAction == FormAction.LOGIN) { // Saves the user_authtoken if a login form was used
-                user_authtoken = response.data.auth_token;
+                    user_authtoken = response.data.auth_token;
                 }
                 else if (formAction == FormAction.LOGOUT) { // Deletes the user_authtoken if a logout form was used
-                user_authtoken = null;
+                    user_authtoken = null;
                 }
             }
         })
