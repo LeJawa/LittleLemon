@@ -1,0 +1,43 @@
+<html>
+  <head>
+    {% load static %}
+    <title>Capstone Project</title>
+    <link rel="stylesheet" href="{% static 'restaurant/style.css' %}">
+  </head>
+  <body>
+    <header>
+        <h1 style="text-align:center;">Back-end Capstone Project</h1>
+        <img src="{% static 'restaurant/logo.png' %}">
+    </header>
+    <nav>
+        {% block nav %}
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Menu Items</a></li>
+          <li><a href="#">Bookings</a></li>
+        </ul>
+        {% endblock %}
+    </nav>
+    <main>
+        <section class="big-container">
+        <section id="steps" class="column-section">
+            {% block steps %}{% endblock steps %}
+        </section>
+
+        <section id="output-column" class="column-section">
+            <article id="output-box">
+            <button id="clear-output-button" hidden>Clear output</button>
+            <div id="placeholder-output">
+                OUTPUT WILL APPEAR HERE
+            </div>
+            </article>
+        </section>
+        </section>
+    </main>    
+  </body>
+  
+  <script src="{% static 'restaurant/setup.js' %}"></script>
+  <script src="{% static 'restaurant/forms.js' %}"></script>
+  <script src="{% static 'restaurant/output.js' %}"></script>
+  {% block formLinkScripts %}{% endblock formLinkScripts %}
+</html>

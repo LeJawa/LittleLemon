@@ -26,8 +26,47 @@ h2 {
     margin:1rem 0;
 }
 
+a {
+    color: #EE9972;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 p, ul{
     font-size: 1.25rem;;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: center;
+    justify-content: space-evenly;
+    /* Remove dot */
+    list-style-type: none;
+    color: #edecdc;
+    border: solid #edecdc;
+    background-color: #232923;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    font-size: x-large;
+}
+
+nav ul li a {
+    margin: 0 1em;
+    color: #edecdc;
+}
+
+header {
+    text-align: center;
+}
+
+header img {
+    margin: 1em;
+    display: inline-block;
 }
 
 .big-container {
@@ -123,6 +162,7 @@ form > * > * {
 
 input.form-control{
     width: 100%;
+    background-color: #e0dfc9;
 }
 
 .form-body .input{
@@ -201,13 +241,4 @@ button{
 
 button:hover{
     background-color: #41463c;
-}
-
-a {
-    color: #EE9972;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
