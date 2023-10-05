@@ -19,10 +19,12 @@ from django.urls import path, include
 
 from rest_framework.authtoken.views import obtain_auth_token
 
-from restaurant.views import index
+from restaurant.views import index, menu, bookings
 
 urlpatterns = [
     path('', index, name="index"),
+    path('menu-items/', menu, name="menu"),
+    path('reservations/', bookings, name="bookings"),
     path('admin/', admin.site.urls),
     path('restaurant/', include('restaurant.urls')),
     path('auth/', include('djoser.urls')),

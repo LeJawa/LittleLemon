@@ -3,10 +3,12 @@ from django.contrib.auth.models import User
 
 from .models import MenuItem, Booking
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer): 
+    is_staff = serializers.BooleanField(source='is_staff', read_only=True)
+   
     class Meta:
         model = User
-        fields = ['id', 'username', 'email']
+        fields = ['id', 'username', 'email', 'is_staff']
 
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:

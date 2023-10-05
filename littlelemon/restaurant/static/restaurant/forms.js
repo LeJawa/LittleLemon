@@ -1,9 +1,15 @@
-var user_authtoken = null;      
+var user_authtoken = null;
 
-function add_response_to_output(response) {
+function add_response_to_output(method, path, response) {
     console.log(response.status);
     const responsediv = document.createElement('div')
     responsediv.classList.add('response');
+    const endpoint_method = document.createElement('span');
+    endpoint_method.classList.add('status');
+    endpoint_method.innerHTML = method;
+    const endpoint_path = document.createElement('span');
+    endpoint_path.classList.add('path');
+    endpoint_path.innerHTML = path;
     const status = document.createElement('span');
     status.classList.add('status');
 
@@ -20,6 +26,8 @@ function add_response_to_output(response) {
     output.innerHTML = JSON.stringify(response.data, null, 1);
 
     document.getElementById("output-box").children[1].after(responsediv);
+    responsediv.appendChild(endpoint_method);
+    responsediv.appendChild(endpoint_path);
     responsediv.appendChild(status);
     responsediv.appendChild(output);
     document.getElementById('clear-output-button').removeAttribute('hidden');
@@ -82,7 +90,7 @@ function linkFormToOutput(formId, path, method, formAction = FormAction.STANDARD
 
         })
         .then(response => {
-            add_response_to_output(response);
+            add_response_to_output(method, path, response);
             
             if (isSuccesful(response)) {
                 if (formAction == FormAction.LOGIN) { // Saves the user_authtoken if a login form was used
@@ -91,6 +99,8 @@ function linkFormToOutput(formId, path, method, formAction = FormAction.STANDARD
                 else if (formAction == FormAction.LOGOUT) { // Deletes the user_authtoken if a logout form was used
                     user_authtoken = null;
                 }
+                
+                setLoggedStatus(user_authtoken);
             }
         })
         .catch(error => {

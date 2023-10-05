@@ -12,32 +12,17 @@
     <nav>
         {% block nav %}
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Menu Items</a></li>
-          <li><a href="#">Bookings</a></li>
+          <li><a href='{% url "index" %}'>Home</a></li>
+          <li><a href='{% url "menu" %}'>Menu Items</a></li>
+          <li><a href='{% url "bookings" %}'>Bookings</a></li>
         </ul>
         {% endblock %}
     </nav>
     <main>
-        <section class="big-container">
-        <section id="steps" class="column-section">
-            {% block steps %}{% endblock steps %}
-        </section>
-
-        <section id="output-column" class="column-section">
-            <article id="output-box">
-            <button id="clear-output-button" hidden>Clear output</button>
-            <div id="placeholder-output">
-                OUTPUT WILL APPEAR HERE
-            </div>
-            </article>
-        </section>
-        </section>
+        {% block main %}
+        {% endblock main %}
     </main>    
   </body>
-  
-  <script src="{% static 'restaurant/setup.js' %}"></script>
-  <script src="{% static 'restaurant/forms.js' %}"></script>
-  <script src="{% static 'restaurant/output.js' %}"></script>
-  {% block formLinkScripts %}{% endblock formLinkScripts %}
+  {% block scripts %}
+  {% endblock scripts %}
 </html>

@@ -26,6 +26,12 @@ h2 {
     margin:1rem 0;
 }
 
+h3 {
+    font-size: 2rem;
+    color: #232923;
+    margin:1rem 0;
+}
+
 a {
     color: #EE9972;
     text-decoration: none;
@@ -37,6 +43,13 @@ a:hover {
 
 p, ul{
     font-size: 1.25rem;;
+}
+
+p.note {
+    font-weight: lighter;
+    font-style: italic;
+    color: #474f47;
+    margin: 0.5rem 0;
 }
 
 nav ul {
@@ -69,6 +82,30 @@ header img {
     display: inline-block;
 }
 
+#API-header {
+    padding: 0.5em 1em;
+    background-color: #edecdc;
+    border-radius: 1em;
+}
+
+#steps-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#log-status {
+    background-color: #232923;
+    color: rgb(225, 224, 205);
+    padding: 0.5em;
+    border: solid rgb(225, 224, 205);
+    border-radius: 0.7em;
+    position: fixed;
+    top: 1em;
+    right: 6%;
+    text-align: center;
+}
+
 .big-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -91,7 +128,7 @@ header img {
 
 #output-column {
     position: sticky;
-    top: 100px;
+    top: 5.5em;
     height: auto;
 }
 
@@ -204,6 +241,12 @@ input.form-control{
     font-size: larger;
     border: solid;
     padding: 0.15em;
+}
+
+#output-box .path {
+    text-decoration: solid underline;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 #output-box .status-green {

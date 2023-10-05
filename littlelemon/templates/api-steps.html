@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<div id="API-header">
+    <div id="steps-title">
+        <h1>{% block title %}{% endblock title %}</h1>
+        <div id="log-status">Not <br/>logged in</div>
+    </div>
+    <h3>{% block subtitle %}{% endblock subtitle %}</h3>
+    {% block description %}{% endblock description %}
+</div>
+<section class="big-container">
+    <section id="steps" class="column-section">
+        {% block steps %}{% endblock steps %}
+    </section>
+
+    <section id="output-column" class="column-section">
+        <article id="output-box">
+        <button id="clear-output-button" hidden>Clear output</button>
+        <div id="placeholder-output">
+            OUTPUT WILL APPEAR HERE
+        </div>
+        </article>
+    </section>
+</section>
+{% endblock main %}
+
+{% block scripts %}
+    <script src="{% static 'restaurant/setup.js' %}"></script>
+    <script src="{% static 'restaurant/output.js' %}"></script>
+
+    <script>
+        function setLoggedStatus(token) {
+            logStatus = document.getElementById("log-status");
+            if (!token){
+                logStatus.innerHTML = "Not <br/>logged in";
+                return;
+            }
+
+            const headers = {};
+            headers['Authorization'] = `Token ${token}`;
+            fetch('/auth/users/me/', {method: 'GET', headers: headers})
+            .then(response => {
+                console.log( response.json());
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+        setLoggedStatus(null);
+
+    </script>
+    
+    <script src="{% static 'restaurant/forms.js' %}"></script>
+
+    {% block formLinkScripts %}{% endblock formLinkScripts %}
+{% endblock scripts %}

@@ -7,6 +7,10 @@ from .serializers import MenuItemSerializer, BookingSerializer
 
 def index(request):
     return render(request, 'index.html', {})
+def menu(request):
+    return render(request, 'menu.html', {})
+def bookings(request):
+    return render(request, 'booking.html', {})
 
 class ManageMenuItemView(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()

@@ -1,23 +1,31 @@
-{% extends "base.html" %}
+{% extends "api-steps.html" %}
+
+{% block title %}Menu Items API {% endblock title %}
+{% block subtitle %}This page allows you to manipulate the MenuItem database{% endblock subtitle %}
+{% block description %}
+<p>There are two different endpoints: <u>/restaurant/show/menu-items</u> and <u>/restaurant/manage/menu-items</u>.</p>
+<p>The first endpoint is used to allow the retrieval of menu items from the database and can be used by anyone (even Anon users).</p>
+<p>The second endpoint can only be accessed by staff members and allows full CRUD functionality on the MenuItem database.</p>
+<p>Follow the steps to test the API functionality... Or play around with the different buttons.</p>
+<p class="note">The endpoints can also be accessed using any REST client (e.g. Insomnia).</p>
+{% endblock description %}
 
 {% block steps %}
-<h2>Menu</h2>
-{% include 'forms/login-staff-form.html' %}
-{% include 'forms/show-menuitem-form.html' %}
-<h2>Manage menu items</h2>
-{% include 'forms/logout-form.html' %}
-{% include 'forms/manage-menuitem-form.html' %}
+    {% include 'forms/login-staff-form.html' %}
+    {% include 'forms/show-menuitem-form.html' %}
+    {% include 'forms/logout-form.html' %}
+    {% include 'forms/manage-menuitem-form.html' %}
 {% endblock steps %}
 
 
 {% block formLinkScripts %}
-<script>
-    // Don't forget to link all the forms to the output
-    linkFormToOutput('login-form', "/auth/token/login", 'POST', FormAction.LOGIN);
-    linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET', FormAction.STANDARD);
-    linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
-    linkFormToOutput('manage-menuitem-list', "{% url 'manage_menuitem-list' %}" ,'GET', FormAction.STANDARD);
-    linkFormToOutput('manage-menuitem-create', "{% url 'manage_menuitem-list' %}" ,'POST', FormAction.STANDARD);
-    linkFormToOutput('manage-menuitem-delete', "{% url 'manage_menuitem-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
-</script>
+    <script>
+        // Don't forget to link all the forms to the output
+        linkFormToOutput('login-form', "/auth/token/login", 'POST', FormAction.LOGIN);
+        linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET', FormAction.STANDARD);
+        linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
+        linkFormToOutput('manage-menuitem-list', "{% url 'manage_menuitem-list' %}" ,'GET', FormAction.STANDARD);
+        linkFormToOutput('manage-menuitem-create', "{% url 'manage_menuitem-list' %}" ,'POST', FormAction.STANDARD);
+        linkFormToOutput('manage-menuitem-delete', "{% url 'manage_menuitem-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
+    </script>
 {% endblock formLinkScripts %}
