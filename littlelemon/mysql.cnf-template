@@ -1,0 +1,5 @@
+[client]
+database = LittleLemon
+user = root
+password = <your password>
+default-character-set = utf8
