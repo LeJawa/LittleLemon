@@ -1,5 +1,41 @@
 {% extends 'base.html' %}
 
-{% block main %}
-  Index
-{% endblock main %}
+{% block title %}Little Lemon API{% endblock title %}
+{% block subtitle %}Capstone Project for the Meta Back-End Developer Professional Certificate{% endblock subtitle %}
+{% block description %}
+<p>This website allows you to test the API of the Little Lemon restaurant.</p>
+<p>Please follow the links in the navigation bar to test the different endpoints.</p>
+<p>It is recommended that you start with the <u>Users</u> endpoint, as you will need it to authenticate to the other endpoints.</p>
+
+<p>On the different pages, you will be testing the following endpoints:</p>
+  <ul>
+    <li><u>Users</u>: 
+      <ul>
+        <li> <code>/auth/users/me/</code></li> 
+      </ul>
+    </li>
+    <li><u>Menu Items</u>: 
+      <ul>
+        <li> <code>{% url 'show_menuitem-list' %}</code></li> 
+        <li> <code>{% url 'manage_menuitem-list' %}</code></li> 
+      </ul>
+    </li>
+    <li><u>Bookings</u>: 
+      <ul>
+        <li> <code>{% url 'show_booking-list' %}</code></li> 
+        <li> <code>{% url 'manage_booking-list' %}</code></li> 
+      </ul>
+    </li>
+  </ul>
+
+  <p>Additionally, you will also use the following authentication endpoints:</p>
+  <ul><ul>
+    <li><code>/auth/token/login/</code></li>
+    <li><code>/auth/token/logout/</code></li>
+  </ul></ul>
+
+  <p class="note">The endpoints can also be accessed using any REST client (e.g. Insomnia).</p>
+  <p class="note">You can use the browser to reach the endpoints, but be aware that SessionAuthentication has been disabled<br/>
+    Each authenticated request must contain the appropriate token.</p>
+
+{% endblock description %}

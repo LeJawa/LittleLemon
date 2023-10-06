@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-size: 4rem;
-    margin-top: 1.5rem;
+    margin-top: 0rem;
     margin-bottom: 0;
 }
 
@@ -52,10 +52,14 @@ p.note {
     margin: 0.5rem 0;
 }
 
+p.note::before {
+    content: "Note: ";
+    font-weight: bold;
+}
+
 nav ul {
     display: flex;
     flex-direction: row;
-    width: 100%;
     align-content: center;
     justify-content: space-evenly;
     /* Remove dot */
@@ -75,6 +79,9 @@ nav ul li a {
 
 header {
     text-align: center;
+    background-color: #edecdc;
+    border-radius: 1em;
+    padding-top: 1.5em;
 }
 
 header img {
@@ -82,13 +89,13 @@ header img {
     display: inline-block;
 }
 
-#API-header {
+#main-header {
     padding: 0.5em 1em;
     background-color: #edecdc;
     border-radius: 1em;
 }
 
-#steps-title {
+#main-header-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
