@@ -13,14 +13,23 @@
         {% block nav %}
         <ul>
           <li><a href='{% url "index" %}'>Home</a></li>
+          <li><a href='{% url "users" %}'>Users</a></li>
           <li><a href='{% url "menu" %}'>Menu Items</a></li>
           <li><a href='{% url "bookings" %}'>Bookings</a></li>
         </ul>
         {% endblock %}
     </nav>
     <main>
-        {% block main %}
-        {% endblock main %}
+        <div id="main-header">
+          <div id="main-header-title">
+              <h1>{% block title %}{% endblock title %}</h1>
+              <div id="log-status">Not logged in<br/><span id='log-user'>(Anon)<span></div>
+          </div>
+          <h3>{% block subtitle %}{% endblock subtitle %}</h3>
+          {% block description %}{% endblock description %}
+        </div>
+          {% block main %}
+          {% endblock main %}
     </main>    
   </body>
   {% block scripts %}
