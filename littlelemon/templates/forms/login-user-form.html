@@ -1,0 +1,20 @@
+<article>
+    <form id="login-user-form" action="/auth/token/login" method="post">
+      {% csrf_token %}
+      <div class="form-header">
+        <div class="description">
+            <p>Login as a normal user.</p>
+        </div>
+      </div>
+      <div class="form-body">
+        <div class="input">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="25" required="" value="">
+  
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" maxlength="50" required="" value="">
+        </div>
+        <div class="button">
+          <button type="submit" class="endpoint">Login</button>
+        </div>
+      </div>
+    </form>
+  </article>

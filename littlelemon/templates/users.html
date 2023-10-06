@@ -1,1 +1,26 @@
 {% extends "api-steps.html" %}
+
+{% block title %}Users API {% endblock title %}
+{% block subtitle %}This page allows you to create new users{% endblock subtitle %}
+{% block description %}
+<p>Follow the steps to create new users... Or play around with the different buttons.</p>
+<p class="note">There is no login persistence between pages. You will need to relog every time you change page.</p>
+<p class="note">Password validation has been removed, the paswords are allowed to be as short and simple as desired.</p>
+{% endblock description %}
+
+{% block steps %}
+{% include 'forms/create-staff-user.html' %}
+{% include 'forms/create-user-form.html' %}
+{% include 'forms/login-new-user-form.html' %}
+{% include 'forms/logout-form.html' %}
+{% endblock steps %}
+
+
+{% block formLinkScripts %}
+    <script>
+        // Don't forget to link all the forms to the output
+        linkFormToOutput('login-new-user-form', "/auth/token/login", 'POST', FormAction.LOGIN);
+        linkFormToOutput('create-user-form', "/auth/users/", 'POST', FormAction.STANDARD);
+        linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
+    </script>
+{% endblock formLinkScripts %}

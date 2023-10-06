@@ -1,0 +1,12 @@
+<article>
+  <form id="create-staff-user" action="/auth/token/login" method="post">
+    {% csrf_token %}
+    <div class="form-header">
+      <div class="description">
+        <p>Create a superuser account via the command line.</p>
+        <code class="terminal">> python manage.py createsuperuser</code>
+        <p>It is recommended to use <em>admin</em> as both the username and the password.</p>
+      </div>
+    </div>
+  </form>
+</article>

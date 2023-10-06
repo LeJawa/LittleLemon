@@ -1,0 +1,32 @@
+<article>
+    <form id="create-user-form" action="/auth/users/" method="post">
+      {% csrf_token %}
+      <div class="form-header">
+        <div class="description">
+          <p>Create a few users.</p>
+          <p>To simplify, the generated password will be equal to the username.</p>
+        </div>
+      </div>
+      <div class="form-body">
+        <div class="input">
+            <input type="text" class="form-control" id="create-user-username" name="username" placeholder="Username" maxlength="25" required="" value="">
+  
+            <input type="password" class="form-control" id="create-user-password" name="password" placeholder="Password" maxlength="50" required="" value="">
+        </div>
+        <div class="button">
+          <button type="button" class="endpoint" id="random-user-button" onclick="updateRandomUsername()">Random User</button>
+          <button type="submit" class="endpoint">Create</button>
+        </div>
+      </div>
+    </form>
+  </article>
+
+  <script>
+    function updateRandomUsername(){
+      const listOfNames = ["Liam", "Noah", "John", "Owen", "Luke", "Jack", "Levi", "Ryan", "Ezra", "Adam", "Jose", "Evan", "Jace", "Emma", "Ella", "Aria", "Nora", "Zoey", "Mila", "Lily", "Luna", "Leah", "Lucy", "Anna", "Maya", "Ruby", "Cora"];
+      const randomUsername = listOfNames[Math.floor(Math.random() * listOfNames.length)].toLowerCase();
+      
+      document.getElementById("create-user-username").value = randomUsername;
+      document.getElementById("create-user-password").value = randomUsername;
+    }
+  </script>
