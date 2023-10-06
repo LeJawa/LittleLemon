@@ -106,6 +106,12 @@ header img {
     text-align: center;
 }
 
+#log-user {
+    font-weight: bold;  
+    margin-top: 0.5em;
+    display: block;
+}
+
 .big-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -128,7 +134,7 @@ header img {
 
 #output-column {
     position: sticky;
-    top: 5.5em;
+    top: 6em;
     height: auto;
 }
 
