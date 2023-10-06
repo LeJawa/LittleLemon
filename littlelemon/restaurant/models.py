@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, null=False)
+    title = models.CharField(max_length=255, null=False)
     no_of_guests = models.SmallIntegerField(null=False)
     booking_date = models.DateField(null=False)
     
