@@ -5,14 +5,14 @@
 {% block description %}
 <p>This website allows you to test the API of the Little Lemon restaurant.</p>
 <p>Follow the links in the navigation bar to test the different endpoints.</p>
-<p>In order to be able to fully access the API, you need to have created an admin account.</p>
-<p>It is recommended that you start with the <u>Users</u> endpoint, as you will need more users to authenticate to the other endpoints.</p>
+<p class="note">This is not meant to be a complete test of the API, but rather a demonstration of the different endpoints.</p>
+<p>It is recommended that you start with the <a href="{% url 'users' %}">Users</a> page, as you will need users to authenticate to the other endpoints.</p>
 
 <p>On the different pages, you will be testing the following endpoints:</p>
   <ul>
     <li><u>Users</u>: 
       <ul>
-        <li> <code>/auth/users/me/</code></li> 
+        <li> <code>/auth/users/</code></li>
       </ul>
     </li>
     <li><u>Menu Items</u>: 
@@ -36,7 +36,6 @@
   </ul></ul>
 
   <p class="note">The endpoints can also be accessed using any REST client (e.g. Insomnia).</p>
-  <p class="note">You can use the browser to reach the endpoints, but be aware that SessionAuthentication has been disabled<br/>
-    Each authenticated request must contain the appropriate authentication token.</p>
+  <p class="note">You can use the browser to reach the endpoints, but be aware that SessionAuthentication has been disabled.<br/>
 
 {% endblock description %}

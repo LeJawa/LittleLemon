@@ -1,0 +1,30 @@
+<article>
+  <form id="staff-booking-list" action="{% url 'staff_booking-list' %}" method="get">
+    {% csrf_token %}
+    <div class="form-header">
+      <p class="description">List all the reservations via GET requests to <br/><code>{% url 'staff_booking-list' %}</code></p>
+    </div>
+    <div class="form-body">
+      <div class="button">
+        <button type="submit" class="endpoint">GO</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+<article>
+  <form id="staff-booking-delete" action="{% url 'staff_booking-detail' 0 %}" method="delete">
+    {% csrf_token %}
+    <div class="form-header">
+      <p class="description">Remove particular reservations via DELETE requests to <br/><code>{% url 'staff_booking-list' %}&lt;pk&gt;</code></p>
+    </div>
+    <div class="form-body">
+      <div class="input">
+        <input type="number" class="form-control" id="delete-staff-booking-id" name="id" placeholder="Reservation ID" required="" step="1">
+      </div>
+      <div class="button">
+        <button type="submit" class="endpoint">GO</button>
+      </div>
+    </div>
+  </form>
+</article>

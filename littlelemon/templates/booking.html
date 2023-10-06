@@ -11,11 +11,12 @@ The second endpoint can only be accessed by staff members and allows full CRUD f
 
 {% block steps %}
 {% include 'forms/login-user-form.html' %}
-    {% include 'forms/manage-menuitem-form.html' %}
+    {% include 'forms/user-booking-form.html' %}
     {% include 'forms/logout-form.html' %}
-    {% include 'forms/check-unauthorized.html' %}
+    {% comment %} {% include 'forms/check-unauthorized.html' %} {% endcomment %}
     {% include 'forms/login-staff-form.html' %}
-    {% include 'forms/show-menuitem-form.html' %}
+    {% include 'forms/staff-booking-form.html' %}
+    {% include 'forms/logout-form2.html' %}
     {% include 'forms/check-authorization.html' %}
     
 {% endblock steps %}
@@ -25,11 +26,13 @@ The second endpoint can only be accessed by staff members and allows full CRUD f
     <script>
         // Don't forget to link all the forms to the output
         linkFormToOutput('login-staff-form', "/auth/token/login", 'POST', FormAction.LOGIN);
-        linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET', FormAction.STANDARD);
+        linkFormToOutput('staff-booking-list', "{% url 'staff_booking-list' %}" ,'GET', FormAction.STANDARD);
+        linkFormToOutput('staff-booking-delete', "{% url 'staff_booking-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
         linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
-        linkFormToOutput('manage-menuitem-list', "{% url 'manage_menuitem-list' %}" ,'GET', FormAction.STANDARD);
-        linkFormToOutput('manage-menuitem-create', "{% url 'manage_menuitem-list' %}" ,'POST', FormAction.STANDARD);
-        linkFormToOutput('manage-menuitem-delete', "{% url 'manage_menuitem-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
+        linkFormToOutput('user-booking-list', "{% url 'user_booking-list' %}" ,'GET', FormAction.STANDARD);
+        linkFormToOutput('user-booking-create', "{% url 'user_booking-list' %}" ,'POST', FormAction.STANDARD);
+        linkFormToOutput('user-booking-delete', "{% url 'user_booking-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
         linkFormToOutput('login-user-form', "/auth/token/login", 'POST', FormAction.LOGIN);
+        linkFormToOutput('logout-form2', "/auth/token/logout", 'POST', FormAction.LOGOUT);
     </script>
 {% endblock formLinkScripts %}
