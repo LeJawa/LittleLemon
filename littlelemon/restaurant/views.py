@@ -23,7 +23,7 @@ class ShowMenuItemViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, view
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
-class UserBookingViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class UserBookingViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated,]
