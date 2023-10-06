@@ -1,11 +1,20 @@
+:root {
+    --primary-dark: #232923;
+    --primary-light: #e0dfc9;
+    --secondary-light: #edecdc;
+    --secondary-dark: #636259;
+    --accent-dark: #474f47; 
+}
+
+
 body {
     font-family: 'Karla', sans-serif;
     margin-top: 3rem;
     margin-bottom: 3rem;
     margin-left: 5%;
     margin-right: 5%;
-    background-color: #e0dfc9;
-    color: #232923;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
 }
 
 
@@ -22,23 +31,37 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
-    color: #232923;
+    color: var(--primary-dark);
     margin:1rem 0;
 }
 
 h3 {
     font-size: 2rem;
-    color: #232923;
+    color: var(--primary-dark);
     margin:1rem 0;
 }
 
 a {
-    color: #EE9972;
     text-decoration: none;
+}
+nav a {
+    padding: 8px;
+}
+p a {
+    color: var(--accent-dark);
+    font-style: italic;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+nav a:hover {
+    border: solid;
+    border-width: 4px;
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 0.2em;
 }
 
 p, ul{
@@ -48,7 +71,7 @@ p, ul{
 p.note {
     font-weight: lighter;
     font-style: italic;
-    color: #474f47;
+    color: var(--accent-dark);
     margin: 0.5rem 0;
 }
 
@@ -64,9 +87,9 @@ nav ul {
     justify-content: space-evenly;
     /* Remove dot */
     list-style-type: none;
-    color: #edecdc;
-    border: solid #edecdc;
-    background-color: #232923;
+    color: var(--secondary-light);
+    border: solid var(--secondary-light);
+    background-color: var(--primary-dark);
     border-radius: 0.3em;
     padding: 0.5em;
     font-size: x-large;
@@ -74,12 +97,12 @@ nav ul {
 
 nav ul li a {
     margin: 0 1em;
-    color: #edecdc;
+    color: var(--secondary-light);
 }
 
 header {
     text-align: center;
-    background-color: #edecdc;
+    background-color: var(--secondary-light);
     border-radius: 1em;
     padding-top: 1.5em;
 }
@@ -91,7 +114,7 @@ header img {
 
 #main-header {
     padding: 0.5em 1em;
-    background-color: #edecdc;
+    background-color: var(--secondary-light);
     border-radius: 1em;
 }
 
@@ -102,7 +125,7 @@ header img {
 }
 
 #log-status {
-    background-color: #232923;
+    background-color: var(--primary-dark);
     color: rgb(225, 224, 205);
     padding: 0.5em;
     border: solid rgb(225, 224, 205);
@@ -148,13 +171,13 @@ header img {
 article {
     flex:1;
     padding: 1em;
-    background-color: #edecdc;
+    background-color: var(--secondary-light);
     border-radius: 1em;
 }
 
 #output-box {
-    background-color: #636259;
-    color: #edecdc;
+    background-color: var(--secondary-dark);
+    color: var(--secondary-light);
 }
 
 form {
@@ -170,8 +193,8 @@ form {
 
 code.terminal {
     font-size: 1.2em;
-    background: #232923;
-    color: #edecdc;
+    background: var(--primary-dark);
+    color: var(--secondary-light);
     padding: 0.3em 1em;
     border-radius: 0.2em;
 }
@@ -213,7 +236,7 @@ code.terminal {
 
 input.form-control{
     width: 100%;
-    background-color: #e0dfc9;
+    background-color: var(--primary-light);
 }
 
 .form-body .input{
@@ -288,7 +311,7 @@ input.form-control{
   }
 
 button{
-    background-color: #232923;
+    background-color: var(--primary-dark);
     border-radius: 0.3em;
     color: rgb(225, 224, 205);
     font-size: 18;
@@ -297,5 +320,5 @@ button{
 }
 
 button:hover{
-    background-color: #41463c;
+    background-color: var(--accent-dark);
 }
