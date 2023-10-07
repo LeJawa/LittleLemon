@@ -7,6 +7,9 @@ class Booking(models.Model):
     no_of_guests = models.SmallIntegerField(null=False)
     booking_date = models.DateField(null=False)
     
+    def get_booking(self):
+        return f'{self.title} ({self.booking_date}): ${str(self.no_of_guests)}'
+    
 class MenuItem(models.Model):
     title = models.CharField(max_length=255, null=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
