@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 
 from .models import MenuItem, Booking
 
-class UserSerializer(serializers.ModelSerializer):
-   
+class UserSerializer(serializers.ModelSerializer):   
     class Meta:
         model = User
         fields = ['id', 'username', 'email']
@@ -24,7 +23,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
         model = MenuItem
         fields = "__all__"
         
-class BookingSerializer(serializers.ModelSerializer):
+class UserBookingSerializer(serializers.ModelSerializer):
     user = UserSerializer
     class Meta:
         model = Booking
@@ -35,4 +34,10 @@ class BookingSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         booking = Booking.objects.create(user=user, **validated_data)
         return booking
+        
+class StaffBookingSerializer(serializers.ModelSerializer):
+    user = UserSerializer
+    class Meta:
+        model = Booking
+        fields = ['id', 'user', 'title', 'no_of_guests', 'booking_date']
     

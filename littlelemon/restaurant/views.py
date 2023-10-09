@@ -3,7 +3,7 @@ from rest_framework import generics, viewsets, mixins
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from .models import MenuItem, Booking
-from .serializers import MenuItemSerializer, BookingSerializer
+from .serializers import MenuItemSerializer, UserBookingSerializer, StaffBookingSerializer
 
 def index(request):
     return render(request, 'index.html', {})
@@ -25,7 +25,7 @@ class ShowMenuItemViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, view
 
 class UserBookingViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
     queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
+    serializer_class = UserBookingSerializer
     permission_classes = [IsAuthenticated,]
     
     def get_queryset(self):
@@ -33,5 +33,5 @@ class UserBookingViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixin
 
 class StaffBookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
+    serializer_class = StaffBookingSerializer
     permission_classes = [IsAdminUser,]
