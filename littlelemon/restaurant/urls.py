@@ -7,8 +7,8 @@ router = DefaultRouter()
 
 router.register(r'user/reservation/tables', views.UserBookingViewSet, basename="user_booking")
 router.register(r'staff/reservation/tables', views.StaffBookingViewSet, basename="staff_booking")
-router.register(r'show/menu-items', views.ShowMenuItemViewSet, basename="show_menuitem")
-router.register(r'manage/menu-items', views.ManageMenuItemView, basename="manage_menuitem")
+router.register(r'show/menus', views.ShowMenuViewSet, basename="show_menu")
+router.register(r'manage/menus', views.ManageMenuView, basename="manage_menu")
 
 
 urlpatterns = [

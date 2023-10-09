@@ -23,7 +23,7 @@ from restaurant.views import index, menu, bookings, users
 
 urlpatterns = [
     path('', index, name="index"),
-    path('menu-items/', menu, name="menu"),
+    path('menus/', menu, name="menu"),
     path('users/', users, name="users"),
     path('reservations/', bookings, name="bookings"),
     path('admin/', admin.site.urls),

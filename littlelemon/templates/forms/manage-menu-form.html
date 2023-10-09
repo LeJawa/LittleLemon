@@ -1,0 +1,68 @@
+<article>
+  <form id="manage-menu-create" action="{% url 'manage_menu-list' %}" method="post">
+    {% csrf_token %}
+    <div class="form-header">
+      <p class="description">Create new menus via POST requests to <br/><code>restaurant/manage/menus</code></p>
+    </div>
+    <div class="form-body">
+      <div class="input">
+        <input type="text" class="form-control" id="menu-title" name="title" placeholder="Title" maxlength="25" required="">
+        <input type="number" class="form-control" id="menu-price" name="price"placeholder="Price" required="" step="0.01" min="0" max="9999.99">
+        <input type="number" class="form-control" id="menu-inventory" name="inventory" placeholder="Inventory" required="" step="1" min="0" max="999">
+    </div>
+      <div class="button">
+        <button type="button" class="endpoint" id="random-menu-button" onclick="updateRandomMenuitem()">Random Item</button>
+        <button type="submit" class="endpoint" id="create-menu-button">Create</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+<script>
+  function updateRandomMenuitem(){
+    const listOfMeals = ["Fresh sardines", "Breakfast Potatoes", "Egg Drop Soup", "Pumpkin Pie", "Chicken Quinoa Greek Salad", "Corned Beef and Cabbage", "Moussaka", "Vegetarian Casserole", "BBQ Pork Sloppy Joes", "Chicken Alfredo Primavera", "Smoked Haddock Kedgeree", 	"Beef Lo Mein", "Chicken Karaage", 	"Salmon Prawn Risotto", "Jerk chicken with rice & peas", "Blackberry Fool"]
+
+    const randomTitle = listOfMeals[Math.floor(Math.random() * listOfMeals.length)];
+    var randomPrice = Math.floor(Math.random() * 15) + 5.99;
+    randomPrice = randomPrice.toFixed(2)
+    const randomInventory = Math.floor(Math.random() * 50);
+    
+    document.getElementById("menu-title").value = randomTitle;
+    document.getElementById("menu-price").value = randomPrice;
+    document.getElementById("menu-inventory").value = randomInventory;
+  }
+</script>
+
+<article>
+  <form id="manage-menu-list" action="{% url 'manage_menu-list' %}" method="get">
+    {% csrf_token %}
+    <div class="form-header">
+      <p class="description">List all menus via GET requests to <br/><code>restaurant/manage/menus</code></p>
+    </div>
+    <div class="form-body">
+      <div class="button">
+        <button type="submit" class="endpoint">GO</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+<article>
+  <form id="manage-menu-delete" action="{% url 'manage_menu-detail' 1 %}" method="delete">
+    {% csrf_token %}
+    <div class="form-header">
+      <p class="description">Remove particular menus via DELETE requests to <br/><code>restaurant/manage/menus/&lt;pk&gt;</code></p>
+    </div>
+    <div class="form-body">
+      <div class="input">
+        <input type="number" class="form-control" id="delete-menu-id" name="id" placeholder="Menu item ID" required="" step="1">
+      </div>
+      <div class="button">
+        <button type="submit" class="endpoint">GO</button>
+      </div>
+    </div>
+  </form>
+</article>
+
+
+

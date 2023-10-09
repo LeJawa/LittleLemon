@@ -1,20 +1,20 @@
 {% extends "api-steps.html" %}
 
-{% block title %}Menu Items API {% endblock title %}
-{% block subtitle %}This page allows you to manipulate the MenuItem database{% endblock subtitle %}
+{% block title %}Menus API {% endblock title %}
+{% block subtitle %}This page allows you to manipulate the Menu database{% endblock subtitle %}
 {% block description %}
-<p>There are two different endpoints: <code>/restaurant/show/menu-items</code> and <code>/restaurant/manage/menu-items</code>.</p>
-<p>The first endpoint is used to allow the retrieval of menu items from the database and can be used by anyone (even Anon users).<br/>
-The second endpoint can only be accessed by staff members and allows full CRUD functionality on the MenuItem database.</p>
+<p>There are two different endpoints: <code>/restaurant/show/menus</code> and <code>/restaurant/manage/menus</code>.</p>
+<p>The first endpoint is used to allow the retrieval of menus from the database and can be used by anyone (even Anon users).<br/>
+The second endpoint can only be accessed by staff members and allows full CRUD functionality on the Menu database.</p>
 <p>Follow the steps to test the API functionality... Or play around with the different buttons.</p>
 {% endblock description %}
 
 {% block steps %}
     {% include 'forms/login-staff-form.html' %}
-    {% include 'forms/manage-menuitem-form.html' %}
+    {% include 'forms/manage-menu-form.html' %}
     {% include 'forms/logout-form.html' %}
     {% include 'forms/check-unauthorized.html' %}
-    {% include 'forms/show-menuitem-form.html' %}
+    {% include 'forms/show-menu-form.html' %}
     {% include 'forms/login-user-form.html' %}
     {% include 'forms/check-authorization.html' %}
     
@@ -25,11 +25,11 @@ The second endpoint can only be accessed by staff members and allows full CRUD f
     <script>
         // Don't forget to link all the forms to the output
         linkFormToOutput('login-staff-form', "/auth/token/login", 'POST', FormAction.LOGIN);
-        linkFormToOutput('show-menuitem', "{% url 'show_menuitem-list' %}" ,'GET', FormAction.STANDARD);
+        linkFormToOutput('show-menu', "{% url 'show_menu-list' %}" ,'GET', FormAction.STANDARD);
         linkFormToOutput('logout-form', "/auth/token/logout", 'POST', FormAction.LOGOUT);
-        linkFormToOutput('manage-menuitem-list', "{% url 'manage_menuitem-list' %}" ,'GET', FormAction.STANDARD);
-        linkFormToOutput('manage-menuitem-create', "{% url 'manage_menuitem-list' %}" ,'POST', FormAction.STANDARD);
-        linkFormToOutput('manage-menuitem-delete', "{% url 'manage_menuitem-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
+        linkFormToOutput('manage-menu-list', "{% url 'manage_menu-list' %}" ,'GET', FormAction.STANDARD);
+        linkFormToOutput('manage-menu-create', "{% url 'manage_menu-list' %}" ,'POST', FormAction.STANDARD);
+        linkFormToOutput('manage-menu-delete', "{% url 'manage_menu-detail' 0 %}" ,'DELETE', FormAction.DETAIL);
         linkFormToOutput('login-user-form', "/auth/token/login", 'POST', FormAction.LOGIN);
     </script>
 {% endblock formLinkScripts %}

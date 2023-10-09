@@ -10,7 +10,7 @@ class Booking(models.Model):
     def get_booking(self):
         return f'{self.title} ({self.booking_date}): ${str(self.no_of_guests)}'
     
-class MenuItem(models.Model):
+class Menu(models.Model):
     title = models.CharField(max_length=255, null=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     inventory = models.SmallIntegerField(null=False)

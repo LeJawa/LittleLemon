@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics, viewsets, mixins
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
-from .models import MenuItem, Booking
-from .serializers import MenuItemSerializer, UserBookingSerializer, StaffBookingSerializer
+from .models import Menu, Booking
+from .serializers import MenuSerializer, UserBookingSerializer, StaffBookingSerializer
 
 def index(request):
     return render(request, 'index.html', {})
@@ -14,14 +14,14 @@ def bookings(request):
 def users(request):
     return render(request, 'users.html', {})
 
-class ManageMenuItemView(viewsets.ModelViewSet):
-    queryset = MenuItem.objects.all()
-    serializer_class = MenuItemSerializer
+class ManageMenuView(viewsets.ModelViewSet):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
     permission_classes = [IsAdminUser,]
 
-class ShowMenuItemViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = MenuItem.objects.all()
-    serializer_class = MenuItemSerializer
+class ShowMenuViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
 
 class UserBookingViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
     queryset = Booking.objects.all()

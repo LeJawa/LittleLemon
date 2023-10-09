@@ -1,12 +1,12 @@
 from django.test import TestCase, Client
-from restaurant.models import MenuItem, Booking, User
+from restaurant.models import Menu, Booking, User
 
-class MenuItemTest(TestCase):
+class MenuTest(TestCase):
     def test_get_item(self):
         title = "IceCream"
         price = 2
         
-        item = MenuItem.objects.create(title=title, price=price, inventory=100)
+        item = Menu.objects.create(title=title, price=price, inventory=100)
         itemstr = item.get_item()
         
         self.assertEqual(itemstr, f"{title}: ${price}")
