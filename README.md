@@ -4,7 +4,13 @@ Capstone project for the Meta Back-End Developer Professional Certificate on Cou
 ## Get started
 In the terminal or command line, run `pipenv shell` followed by `pipenv install` to install the necessary dependencies.
 
-Go into the `littlelemon` folder and run `python manage.py runserver`.
+If you want to use MySQL, rename `mysql.conf-template` to `mysql.conf` and add the name, username and password of the database.
+
+Go into the `littlelemon` folder and run the following commands:
+
+- `python manage.py makemigrations`
+- `python manage.py migrate`
+- `python manage.py runserver`
 
 To access the API Demo, go to ![127.0.0.1:8000/](127.0.0.1:8000/) and follow the instructions.
 
